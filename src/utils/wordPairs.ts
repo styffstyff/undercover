@@ -1,7 +1,7 @@
 export async function loadWordPairs(): Promise<Array<[string, string]>> {
   try {
     // const csvPath = import.meta.env.PROD ? '/undercover/data/word-pairs.csv' : '/data/word-pairs.csv';
-    const csvPath = '/data/word-pairs.csv'; // Simplifié car le base path sera automatiquement ajouté
+    const csvPath = import.meta.env.BASE_URL + 'data/word-pairs.csv';
     const response = await fetch(csvPath);
     
     if (!response.ok) {
