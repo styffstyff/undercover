@@ -12,8 +12,7 @@ export default defineConfig({
       output: {
         manualChunks: undefined
       }
-    },
-    copyPublicDir: true
+    }
   },
   assetsInclude: ['**/*.csv'], // Ajouter la prise en charge des fichiers CSV
   optimizeDeps: {
