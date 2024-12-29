@@ -4,6 +4,9 @@ on:
   push:
     branches: [ "main" ]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,6 +34,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      
       - name: Download build files
         uses: actions/download-artifact@v3
         with:
@@ -41,4 +46,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
-          branch: main
+          branch: gh-pages
