@@ -1,6 +1,12 @@
 export async function loadWordPairs(): Promise<Array<[string, string]>> {
   try {
-    const response = await fetch('/src/data/word-pairs.csv');
+    const csvPath = import.meta.env.PROD ? '/undercover/data/word-pairs.csv' : '/data/word-pairs.csv';
+    const response = await fetch(csvPath);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
     const text = await response.text();
     return text
       .trim()
@@ -15,6 +21,9 @@ export async function loadWordPairs(): Promise<Array<[string, string]>> {
 export function getRandomWordPair(pairs: Array<[string, string]>): { civilian: string; undercover: string } {
   const randomIndex = Math.floor(Math.random() * pairs.length);
   const [civilianWord, undercoverWord] = pairs[randomIndex];
+  // DEBUG
+  console.log('wordPairs.ts: getRandomWordPair: civilianWord', civilianWord);
+  console.log('wordPairs.ts: getRandomWordPair: undercoverWord', undercoverWord);
   return {
     civilian: civilianWord,
     undercover: undercoverWord

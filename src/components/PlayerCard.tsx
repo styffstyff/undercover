@@ -35,7 +35,6 @@ export function PlayerCard({
       return showRole || player.isRevealed;
     }
   };
-
   return (
     <div 
       id={player.id}

@@ -6,7 +6,7 @@
   "homepage": "https://styffstyff.github.io/undercover/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

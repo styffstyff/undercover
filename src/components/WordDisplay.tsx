@@ -8,7 +8,7 @@ interface WordDisplayProps {
   showRole: boolean;
 }
 
-export function WordDisplay({ role, words, currentPhase, showRole }: WordDisplayProps) {
+export function WordDisplay({ role, words, currentPhase, showRole }: WordDisplayProps) {  
   if (!words || !showRole) {
     return null;
   }
@@ -24,7 +24,9 @@ export function WordDisplay({ role, words, currentPhase, showRole }: WordDisplay
   }
 
   const word = role === 'civilian' ? words.civilian : words.undercover;
-
+  //DEBUG
+  console.log('WordDisplay.tsx: word', word);
+  console.log('WordDisplay.tsx: role', role);
   return (
     <div className="text-center mb-4">
       <p className="text-lg font-semibold text-white">Your word:</p>
