@@ -6,6 +6,7 @@ import { checkVictoryCondition } from '../utils/gameLogic';
 import { GAME_CONFIG } from '../constants/gameConfig';
 import { createParticleEffect } from '../utils/helpers';
 import { WordGuessModal } from './WordGuessModal';
+import { on } from 'events';
 
 interface GameBoardProps {
   gameState: GameState;
@@ -13,6 +14,7 @@ interface GameBoardProps {
   onPhaseChange: (phase: GameState['currentPhase']) => void;
   onCardSelect: (cardId: string) => void;
   onWordGuess: (word: string) => void;
+  onResetGame: () => void;
   playSound: (effect: 'cardSelect' | 'roleReveal' | 'eliminate' | 'victory' | 'defeat') => void;
   showSelectionMessage: boolean;
   availableNames?: string[];
@@ -26,7 +28,8 @@ export function GameBoard({
   onWordGuess,
   playSound,
   showSelectionMessage,
-  availableNames
+  availableNames,
+  onResetGame
 }: GameBoardProps) {
   const handlePlayerClick = (playerId: string) => {
     const player = gameState.players.find(p => p.id === playerId);
@@ -75,6 +78,12 @@ export function GameBoard({
             currentPhase={gameState.currentPhase}
           />
         ))}
+      </div>
+      <div className="max-w-2xl my-8 mx-auto text-center">
+      <button className="mt-4 bg-[#828282] text-white py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors" 
+        onClick={onResetGame}>
+          Reset
+      </button>
       </div>
 
       {(showSelectionMessage || gameState.startingPlayer) && (

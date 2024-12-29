@@ -13,6 +13,10 @@ export default function App() {
     restartGame();
   };
 
+  const handleResetGame = () => {
+    setGameState(prev => ({ ...prev, currentPhase: 'setup' }));
+  }
+
   return (
     <div className="min-h-screen bg-[#1A1A2E]">
       <header className="bg-[#16213E] py-4 px-8 mb-8">
@@ -37,6 +41,7 @@ export default function App() {
           playSound={playSound}
           showSelectionMessage={showSelectionMessage}
           availableNames={gameState.availableNames}
+          onResetGame={handleResetGame}
         />
       )}
 
